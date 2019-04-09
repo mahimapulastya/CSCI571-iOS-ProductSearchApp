@@ -13,6 +13,13 @@
 		FC1698ED225A011C00EF4921 /* productsearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC1698EB225A011C00EF4921 /* productsearch.xcdatamodeld */; };
 		FC1698EF225A011F00EF4921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1698EE225A011F00EF4921 /* Assets.xcassets */; };
 		FC1698F2225A011F00EF4921 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1698F0225A011F00EF4921 /* LaunchScreen.storyboard */; };
+		FC1698FA225AA5FC00EF4921 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1698F9225AA5FC00EF4921 /* MainNavigationController.swift */; };
+		FC169900225ABB7300EF4921 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1698FE225ABB7300EF4921 /* FormViewController.swift */; };
+		FC169901225ABB7300EF4921 /* FormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC1698FF225ABB7300EF4921 /* FormViewController.xib */; };
+		FC169905225ABBA200EF4921 /* WishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC169903225ABBA200EF4921 /* WishListViewController.swift */; };
+		FC169906225ABBA200EF4921 /* WishListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC169904225ABBA200EF4921 /* WishListViewController.xib */; };
+		FC16990A225C634C00EF4921 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC169909225C634C00EF4921 /* SearchResultsViewController.swift */; };
+		FC16990D225C660100EF4921 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC16990C225C660100EF4921 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		FC1698EE225A011F00EF4921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC1698F1225A011F00EF4921 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC1698F3225A011F00EF4921 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC1698F9225AA5FC00EF4921 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		FC1698FE225ABB7300EF4921 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		FC1698FF225ABB7300EF4921 /* FormViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormViewController.xib; sourceTree = "<group>"; };
+		FC169903225ABBA200EF4921 /* WishListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewController.swift; sourceTree = "<group>"; };
+		FC169904225ABBA200EF4921 /* WishListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishListViewController.xib; sourceTree = "<group>"; };
+		FC169909225C634C00EF4921 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		FC16990C225C660100EF4921 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +54,8 @@
 		FC1698D8225A011C00EF4921 = {
 			isa = PBXGroup;
 			children = (
+				FC16990B225C65BC00EF4921 /* Helpers */,
+				FC169907225ABBAB00EF4921 /* xibs */,
 				FC1698E3225A011C00EF4921 /* productsearch */,
 				FC1698E2225A011C00EF4921 /* Products */,
 			);
@@ -63,8 +79,37 @@
 				FC1698F0225A011F00EF4921 /* LaunchScreen.storyboard */,
 				FC1698F3225A011F00EF4921 /* Info.plist */,
 				FC1698EB225A011C00EF4921 /* productsearch.xcdatamodeld */,
+				FC169902225ABB8000EF4921 /* ViewControllers */,
 			);
 			path = productsearch;
+			sourceTree = "<group>";
+		};
+		FC169902225ABB8000EF4921 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FC169903225ABBA200EF4921 /* WishListViewController.swift */,
+				FC1698F9225AA5FC00EF4921 /* MainNavigationController.swift */,
+				FC1698FE225ABB7300EF4921 /* FormViewController.swift */,
+				FC169909225C634C00EF4921 /* SearchResultsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FC169907225ABBAB00EF4921 /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				FC169904225ABBA200EF4921 /* WishListViewController.xib */,
+				FC1698FF225ABB7300EF4921 /* FormViewController.xib */,
+			);
+			path = xibs;
+			sourceTree = "<group>";
+		};
+		FC16990B225C65BC00EF4921 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FC16990C225C660100EF4921 /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +171,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1698F2225A011F00EF4921 /* LaunchScreen.storyboard in Resources */,
+				FC169906225ABBA200EF4921 /* WishListViewController.xib in Resources */,
 				FC1698EF225A011F00EF4921 /* Assets.xcassets in Resources */,
+				FC169901225ABB7300EF4921 /* FormViewController.xib in Resources */,
 				FC1698EA225A011C00EF4921 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,8 +186,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1698E7225A011C00EF4921 /* ViewController.swift in Sources */,
+				FC169905225ABBA200EF4921 /* WishListViewController.swift in Sources */,
 				FC1698E5225A011C00EF4921 /* AppDelegate.swift in Sources */,
+				FC1698FA225AA5FC00EF4921 /* MainNavigationController.swift in Sources */,
+				FC169900225ABB7300EF4921 /* FormViewController.swift in Sources */,
+				FC16990A225C634C00EF4921 /* SearchResultsViewController.swift in Sources */,
 				FC1698ED225A011C00EF4921 /* productsearch.xcdatamodeld in Sources */,
+				FC16990D225C660100EF4921 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
