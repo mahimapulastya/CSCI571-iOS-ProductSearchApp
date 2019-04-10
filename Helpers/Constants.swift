@@ -10,6 +10,8 @@ import Foundation
 
 //View Controller Identifiers
 public enum ViewControllerIdentifier: String {
+    case FormViewControllerIdentifier = "FormViewController"
     case SearchResultsViewControllerIdentifier = "SearchResultsViewController"
+    case WishListViewControllerIdentifier = "WishListViewController"
    
 }
