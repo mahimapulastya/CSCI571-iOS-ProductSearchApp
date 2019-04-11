@@ -13,21 +13,69 @@ import Alamofire
 import SwiftyJSON
 
 class SearchResultsViewController: UITableViewController {
+    var keyword: String = ""
     var products: [Product] = []
+    var pro: Product?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Search Results"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         SwiftSpinner.show("Searching...")
-        performSearch(keyword: "iphone") { res in
+        performSearch(keyword: keyword) { swiftyJsonVar in
+            
+            if let productArray = swiftyJsonVar["findItemsAdvancedResponse"][0]["searchResult"][0]["item"].array {
+                for productDict in productArray {
+                    var priceString: String?
+                    if let price = productDict["sellingStatus"][0]["currentPrice"][0]["__value__"].string {
+                        priceString = "$\(price)"
+                    }
+                    let title = productDict["title"][0].string
+                    let url = URL(string: productDict["galleryURL"][0].string ?? "")
+                    let data = try? Data(contentsOf: url!)
+                    var image: UIImage?
+                    if let imageData = data {
+                        image = UIImage(data: imageData)
+                    }
+                    
+                    var shippingValue: String?
+                    if let costValue = productDict["shippingInfo"][0]["shippingServiceCost"][0]["__value__"].string {
+                        shippingValue = (costValue == "0.0") ? "FREE SHIPPING" : "$\(costValue)"
+                    }
+                    
+                    let zipcode = productDict["postalCode"][0].string
+                    
+                    var condition: String?
+                    if let con  = productDict["condition"][0]["conditionId"][0].string {
+                        switch con {
+                        case "1000":
+                            condition = "NEW"
+                        case "2000", "2500":
+                            condition = "REFURBISHED"
+                        case "3000", "4000", "5000", "6000":
+                            condition = "USED"
+                        default:
+                            condition = "NA"
+                        }
+                    }
+                    
+                    let itemId = productDict["itemId"][0].string!
+                    let seller = productDict["sellerInfo"][0]["sellerUserName"][0].string
+                    let itemURL = productDict["viewItemURL"][0].string!
+                    
+                    let product = Product(itemId: itemId, image: image ?? UIImage(named: "trojan")!, title: title ?? "", price: priceString ?? "", shipping: shippingValue ?? "N/A", zipcode: zipcode ?? "", condition: condition ?? "", seller: seller ?? "", viewItemURL: itemURL )
+
+                    self.products.append(product)
+                }
+            }
             SwiftSpinner.hide()
+            self.tableView.reloadData()
         }
-        products = getAllProducts()
     }
     
     //======================
     
-    func performSearch(keyword: String, completion: @escaping (Any) -> Void) {
+    func performSearch(keyword: String, completion: @escaping (JSON) -> Void) {
         
         let parameters: Parameters = ["keyword": keyword, "postalCode":  "90007"]
         
@@ -51,20 +99,12 @@ class SearchResultsViewController: UITableViewController {
                 noResults.show()
                 return
             }
+            
             completion(swiftyJsonVar)
         }
     }
     
     //==========================
-    
-    func getAllProducts() -> [Product] {
-        var products: [Product] = []
-        
-        let product1 = Product(image: UIImage(named: "trojan")! , title: "fhjhkhfkjhkgh", price: "$123456")
-        products.append(product1)
-        
-        return products
-    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -79,5 +119,18 @@ class SearchResultsViewController: UITableViewController {
         let product = self.products[indexPath.row]
         cell.setupproductview(product: product)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.pro = self.products[indexPath.row]
+        performSegue(withIdentifier: SegueIdentifier.ProductDetailsViewControllerShow.rawValue, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ProductDetailViewController
+        {
+            let vc = segue.destination as? ProductDetailViewController
+            vc?.product = self.pro
+        }
     }
 }

@@ -13,5 +13,11 @@ public enum ViewControllerIdentifier: String {
     case FormViewControllerIdentifier = "FormViewController"
     case SearchResultsViewControllerIdentifier = "SearchResultsViewController"
     case WishListViewControllerIdentifier = "WishListViewController"
+    case ProductImageViewControllerIdentifier = "ProductImageViewController"
    
+}
+
+public enum SegueIdentifier: String {
+    case SearchResultsViewControllerControllerShow = "SearchResultsViewControllerControllerShow"
+    case ProductDetailsViewControllerShow = "ProductDetailsViewControllerShow"
 }

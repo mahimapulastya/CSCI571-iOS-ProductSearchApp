@@ -81,8 +81,5 @@ class ViewController: UIViewController {
             currentViewController.viewWillDisappear(animated)
         }
     }
-
-
-    
 }
 

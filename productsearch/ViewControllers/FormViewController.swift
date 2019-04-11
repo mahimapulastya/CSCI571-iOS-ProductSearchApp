@@ -8,12 +8,10 @@
 
 import UIKit
 import Toast_Swift
-import Alamofire
-import SwiftyJSON
-import SwiftSpinner
 
 class FormViewController: UIViewController {
 
+    var keywordText = ""
     @IBOutlet weak var keywordTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
     
@@ -35,11 +33,20 @@ class FormViewController: UIViewController {
 
     @IBAction func performSearch(_ sender: UIButton) {
         if(isValidForm()) {
-        if let searchResultsViewController = self.storyboard?.instantiateViewController(withIdentifier: ViewControllerIdentifier.SearchResultsViewControllerIdentifier.rawValue) {
-            self.navigationController?.pushViewController(searchResultsViewController, animated: true)
-        }
+            self.keywordText = keywordTextField.text!
+            performSegue(withIdentifier: SegueIdentifier.SearchResultsViewControllerControllerShow.rawValue, sender: self)
+            }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is SearchResultsViewController
+        {
+            let vc = segue.destination as? SearchResultsViewController
+            vc?.keyword = self.keywordText
         }
     }
+    
+    
     
     func isValidForm() -> Bool {
         var isValid: Bool = true
