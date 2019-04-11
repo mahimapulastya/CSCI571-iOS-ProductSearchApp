@@ -26,6 +26,7 @@
 		FC79E77D225D6F9300A7836C /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FC79E77B225D6F9300A7836C /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FC79E782225E6BAB00A7836C /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E781225E6BAB00A7836C /* SearchResultCell.swift */; };
 		FC79E785225E6DFB00A7836C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E784225E6DFB00A7836C /* Product.swift */; };
+		FC79E787225F09C400A7836C /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E786225F09C400A7836C /* ProductDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +66,7 @@
 		FC79E77B225D6F9300A7836C /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		FC79E781225E6BAB00A7836C /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		FC79E784225E6DFB00A7836C /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		FC79E786225F09C400A7836C /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				FC1698F9225AA5FC00EF4921 /* MainNavigationController.swift */,
 				FC1698FE225ABB7300EF4921 /* FormViewController.swift */,
 				FC169909225C634C00EF4921 /* SearchResultsViewController.swift */,
+				FC79E786225F09C400A7836C /* ProductDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				FC169905225ABBA200EF4921 /* WishListViewController.swift in Sources */,
 				FC169912225D3A4000EF4921 /* CheckBoxButton.swift in Sources */,
 				FC1698E5225A011C00EF4921 /* AppDelegate.swift in Sources */,
+				FC79E787225F09C400A7836C /* ProductDetailViewController.swift in Sources */,
 				FC1698FA225AA5FC00EF4921 /* MainNavigationController.swift in Sources */,
 				FC79E785225E6DFB00A7836C /* Product.swift in Sources */,
 				FC169910225D28CA00EF4921 /* CategoryPickerView.swift in Sources */,
