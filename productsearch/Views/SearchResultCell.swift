@@ -34,8 +34,8 @@ class SearchResultCell : UITableViewCell {
         productImageView.image = product.productImage
         productTitleLabel.text = product.productTitle
         priceLabel.text = product.productPrice
-        shippingLabel.text =  "FREE SHIPPING"
-        conditionLabel.text = "NEW"
-        zipcodeLabel.text = "90007"
+        shippingLabel.text =  product.shipping
+        conditionLabel.text = product.condition
+        zipcodeLabel.text = product.zipcode
     }
 }

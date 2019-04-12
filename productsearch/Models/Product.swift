@@ -31,4 +31,8 @@ class Product {
         self.seller = seller
         self.viewItemURL = viewItemURL
     }
+    
+    func getProductID() -> String {
+        return itemId
+    }
 }

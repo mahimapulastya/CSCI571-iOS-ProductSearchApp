@@ -22,6 +22,7 @@ class ProductDetailViewController: UITabBarController {
     
     func setUpNavigationBar() {
         let fbButton = UIBarButtonItem(image: UIImage(named: "facebook"), style: .plain, target: self, action: #selector(shareOnFacebook))
+          print(product?.itemId)
 //        let fbButton = FBSDKShareButton()
 //        let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
 //        if let url = product?.viewItemURL {
@@ -31,13 +32,6 @@ class ProductDetailViewController: UITabBarController {
         let addToWishListButton = UIBarButtonItem(image: UIImage(named: "wishListEmpty"), style: .plain, target: self, action: #selector(addToWishList))
         self.navigationItem.rightBarButtonItems  = [addToWishListButton, fbButton]
     }
-    
-    /* ====== Api Calls ====== */
-    private func getProductDetails() {
-//        guard let itemID = product?.itemId else { return }
-//        viewModel.getDetails(for: itemID)
-    }
-    
     
     @objc func shareOnFacebook() {
         print("Share on fb")

@@ -29,6 +29,10 @@
 		FC79E787225F09C400A7836C /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E786225F09C400A7836C /* ProductDetailViewController.swift */; };
 		FC79E789225F39BC00A7836C /* ProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E788225F39BC00A7836C /* ProductInfoViewController.swift */; };
 		FC79E790225F575C00A7836C /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E78F225F575C00A7836C /* ProductDetailsViewModel.swift */; };
+		FC79E792225FC38C00A7836C /* NameValueListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E791225FC38C00A7836C /* NameValueListCell.swift */; };
+		FC79E794225FFAE300A7836C /* ShippingTabTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E793225FFAE300A7836C /* ShippingTabTableViewController.swift */; };
+		FC79E796225FFDD100A7836C /* PhotosTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E795225FFDD100A7836C /* PhotosTabViewController.swift */; };
+		FC79E798225FFE1B00A7836C /* SimilarItemsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E797225FFE1B00A7836C /* SimilarItemsTabViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,6 +75,10 @@
 		FC79E786225F09C400A7836C /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		FC79E788225F39BC00A7836C /* ProductInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoViewController.swift; sourceTree = "<group>"; };
 		FC79E78F225F575C00A7836C /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
+		FC79E791225FC38C00A7836C /* NameValueListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValueListCell.swift; sourceTree = "<group>"; };
+		FC79E793225FFAE300A7836C /* ShippingTabTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingTabTableViewController.swift; sourceTree = "<group>"; };
+		FC79E795225FFDD100A7836C /* PhotosTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTabViewController.swift; sourceTree = "<group>"; };
+		FC79E797225FFE1B00A7836C /* SimilarItemsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarItemsTabViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +160,9 @@
 				FC169909225C634C00EF4921 /* SearchResultsViewController.swift */,
 				FC79E786225F09C400A7836C /* ProductDetailViewController.swift */,
 				FC79E788225F39BC00A7836C /* ProductInfoViewController.swift */,
+				FC79E793225FFAE300A7836C /* ShippingTabTableViewController.swift */,
+				FC79E795225FFDD100A7836C /* PhotosTabViewController.swift */,
+				FC79E797225FFE1B00A7836C /* SimilarItemsTabViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -170,6 +181,7 @@
 				FC16990F225D28CA00EF4921 /* CategoryPickerView.swift */,
 				FC169911225D3A4000EF4921 /* CheckBoxButton.swift */,
 				FC79E781225E6BAB00A7836C /* SearchResultCell.swift */,
+				FC79E791225FC38C00A7836C /* NameValueListCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -308,16 +320,20 @@
 			files = (
 				FC1698E7225A011C00EF4921 /* ViewController.swift in Sources */,
 				FC169905225ABBA200EF4921 /* WishListViewController.swift in Sources */,
+				FC79E794225FFAE300A7836C /* ShippingTabTableViewController.swift in Sources */,
 				FC169912225D3A4000EF4921 /* CheckBoxButton.swift in Sources */,
 				FC1698E5225A011C00EF4921 /* AppDelegate.swift in Sources */,
+				FC79E796225FFDD100A7836C /* PhotosTabViewController.swift in Sources */,
 				FC79E787225F09C400A7836C /* ProductDetailViewController.swift in Sources */,
 				FC1698FA225AA5FC00EF4921 /* MainNavigationController.swift in Sources */,
 				FC79E785225E6DFB00A7836C /* Product.swift in Sources */,
 				FC169910225D28CA00EF4921 /* CategoryPickerView.swift in Sources */,
 				FC79E782225E6BAB00A7836C /* SearchResultCell.swift in Sources */,
+				FC79E798225FFE1B00A7836C /* SimilarItemsTabViewController.swift in Sources */,
 				FC169900225ABB7300EF4921 /* FormViewController.swift in Sources */,
 				FC16990A225C634C00EF4921 /* SearchResultsViewController.swift in Sources */,
 				FC79E790225F575C00A7836C /* ProductDetailsViewModel.swift in Sources */,
+				FC79E792225FC38C00A7836C /* NameValueListCell.swift in Sources */,
 				FC1698ED225A011C00EF4921 /* productsearch.xcdatamodeld in Sources */,
 				FC79E789225F39BC00A7836C /* ProductInfoViewController.swift in Sources */,
 				FC16990D225C660100EF4921 /* Constants.swift in Sources */,
