@@ -41,29 +41,23 @@ class PhotosTabViewController: UIViewController {
             }
     }
     
-    var yIndex = CGFloat(0)
+    var yIndex = CGFloat(30)
     
     private func setupGoogleImages() {
         if let images = self.images {
             for img in images {
                 let imageView = UIImageView()
                 imageView.image = img
-                imageView.frame.size.width = 343
+                imageView.frame.size.width = 340
                 imageView.frame.size.height = 300
-                imageView.frame.origin.x = 10
+                imageView.frame.origin.x = 0
                 imageView.frame.origin.y = yIndex
-                
-                self.scrollView.addSubview(imageView)
-                yIndex += 300
 
-//                scrollViewContentSize += 300
-//                scrollView.contentSize = CGSize(width: imageWidth, height:scrollViewContentSize)
-                
+                self.scrollView.addSubview(imageView)
+                yIndex += 400
             }
         }
     }
-            
-        
     
 
     //======================
@@ -72,7 +66,7 @@ class PhotosTabViewController: UIViewController {
         
         let parameters: Parameters = ["productTitle": productTitle]
         
-        Alamofire.request("https://myweb-hw8-backend.appspot.com/googlePhotos", method: .get, parameters: parameters).responseData { (response) -> Void in
+        Alamofire.request("http://localhost:8080/googlePhotos", method: .get, parameters: parameters).responseData { (response) -> Void in
             guard response.result.isSuccess,
                 let value = response.result.value  else {
                     let serviceError = UIAlertView(title: "Google Image service Error!", message: "Failed to fetch the images",

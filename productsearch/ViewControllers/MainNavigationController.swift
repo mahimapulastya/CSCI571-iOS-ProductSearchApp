@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class MainNaigationController: UINavigationController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

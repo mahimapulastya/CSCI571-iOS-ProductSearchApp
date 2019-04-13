@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import FBSDKShareKit
 
 class ProductDetailViewController: UITabBarController {
     
@@ -22,21 +21,19 @@ class ProductDetailViewController: UITabBarController {
     
     func setUpNavigationBar() {
         let fbButton = UIBarButtonItem(image: UIImage(named: "facebook"), style: .plain, target: self, action: #selector(shareOnFacebook))
-          print(product?.itemId)
-//        let fbButton = FBSDKShareButton()
-//        let content : FBSDKShareLinkContent = FBSDKShareLinkContent()
-//        if let url = product?.viewItemURL {
-//            content.contentURL = URL(string: url)
-//        }
-//        fbButton.shareContent = content
         let addToWishListButton = UIBarButtonItem(image: UIImage(named: "wishListEmpty"), style: .plain, target: self, action: #selector(addToWishList))
         self.navigationItem.rightBarButtonItems  = [addToWishListButton, fbButton]
     }
     
     @objc func shareOnFacebook() {
-        print("Share on fb")
+        
+        let string = "https://www.facebook.com/dialog/share?app_id=335346230423144&href=\(product!.viewItemURL)&quote=Buy \(product!.productTitle) at \(product!.productPrice) from the link below&hashtag=#CSCI571Spring2019Ebay"
+        let encodedAddress = string.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        print(encodedAddress!)
+        guard let addr = encodedAddress, let url = URL(string: addr) else { return }
+        UIApplication.shared.open(url)
     }
-    
+
     @objc func addToWishList() {
         print("Add to wishlist")
     }
