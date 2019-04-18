@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C34774BB6D1036A2B42EE61A /* Pods_productsearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A1B2A5BBD43BA484659938 /* Pods_productsearch.framework */; };
 		FC04B6332261338C0006BF63 /* SimilarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC04B6322261338C0006BF63 /* SimilarItem.swift */; };
+		FC04B6372261D4410006BF63 /* NoResultsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC04B6362261D4410006BF63 /* NoResultsView.xib */; };
+		FC04B6392261D5E70006BF63 /* NoResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC04B6382261D5E70006BF63 /* NoResultsView.swift */; };
 		FC1698E5225A011C00EF4921 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1698E4225A011C00EF4921 /* AppDelegate.swift */; };
 		FC1698E7225A011C00EF4921 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1698E6225A011C00EF4921 /* ViewController.swift */; };
 		FC1698EA225A011C00EF4921 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC1698E8225A011C00EF4921 /* Main.storyboard */; };
@@ -29,7 +31,6 @@
 		FC79E785225E6DFB00A7836C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E784225E6DFB00A7836C /* Product.swift */; };
 		FC79E787225F09C400A7836C /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E786225F09C400A7836C /* ProductDetailViewController.swift */; };
 		FC79E789225F39BC00A7836C /* ProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E788225F39BC00A7836C /* ProductInfoViewController.swift */; };
-		FC79E790225F575C00A7836C /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E78F225F575C00A7836C /* ProductDetailsViewModel.swift */; };
 		FC79E792225FC38C00A7836C /* NameValueListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E791225FC38C00A7836C /* NameValueListCell.swift */; };
 		FC79E794225FFAE300A7836C /* ShippingTabTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E793225FFAE300A7836C /* ShippingTabTableViewController.swift */; };
 		FC79E796225FFDD100A7836C /* PhotosTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E795225FFDD100A7836C /* PhotosTabViewController.swift */; };
@@ -56,6 +57,8 @@
 		7F698957538230FFD762A73F /* Pods-productsearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-productsearch.release.xcconfig"; path = "Target Support Files/Pods-productsearch/Pods-productsearch.release.xcconfig"; sourceTree = "<group>"; };
 		F4FB23C2D59B0AF25F2B2021 /* Pods-productsearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-productsearch.debug.xcconfig"; path = "Target Support Files/Pods-productsearch/Pods-productsearch.debug.xcconfig"; sourceTree = "<group>"; };
 		FC04B6322261338C0006BF63 /* SimilarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarItem.swift; sourceTree = "<group>"; };
+		FC04B6362261D4410006BF63 /* NoResultsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoResultsView.xib; sourceTree = "<group>"; };
+		FC04B6382261D5E70006BF63 /* NoResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsView.swift; sourceTree = "<group>"; };
 		FC1698E1225A011C00EF4921 /* productsearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = productsearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1698E4225A011C00EF4921 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC1698E6225A011C00EF4921 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,7 +80,6 @@
 		FC79E784225E6DFB00A7836C /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		FC79E786225F09C400A7836C /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		FC79E788225F39BC00A7836C /* ProductInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoViewController.swift; sourceTree = "<group>"; };
-		FC79E78F225F575C00A7836C /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
 		FC79E791225FC38C00A7836C /* NameValueListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValueListCell.swift; sourceTree = "<group>"; };
 		FC79E793225FFAE300A7836C /* ShippingTabTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingTabTableViewController.swift; sourceTree = "<group>"; };
 		FC79E795225FFDD100A7836C /* PhotosTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTabViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FC04B6352261D41D0006BF63 /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				FC04B6362261D4410006BF63 /* NoResultsView.xib */,
+			);
+			path = xibs;
+			sourceTree = "<group>";
+		};
 		FC1698D8225A011C00EF4921 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +150,7 @@
 		FC1698E3225A011C00EF4921 /* productsearch */ = {
 			isa = PBXGroup;
 			children = (
+				FC04B6352261D41D0006BF63 /* xibs */,
 				FC79E78E225F572B00A7836C /* ViewModels */,
 				FC79E783225E6DE700A7836C /* Models */,
 				FC16990E225D289900EF4921 /* Views */,
@@ -187,6 +198,7 @@
 				FC79E781225E6BAB00A7836C /* SearchResultCell.swift */,
 				FC79E791225FC38C00A7836C /* NameValueListCell.swift */,
 				FC79E7992260A4B900A7836C /* SimilarItemCell.swift */,
+				FC04B6382261D5E70006BF63 /* NoResultsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,7 +215,6 @@
 		FC79E78E225F572B00A7836C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				FC79E78F225F575C00A7836C /* ProductDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -269,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC04B6372261D4410006BF63 /* NoResultsView.xib in Resources */,
 				FC1698F2225A011F00EF4921 /* LaunchScreen.storyboard in Resources */,
 				FC1698EF225A011F00EF4921 /* Assets.xcassets in Resources */,
 				FC1698EA225A011C00EF4921 /* Main.storyboard in Resources */,
@@ -330,6 +342,7 @@
 				FC169912225D3A4000EF4921 /* CheckBoxButton.swift in Sources */,
 				FC1698E5225A011C00EF4921 /* AppDelegate.swift in Sources */,
 				FC79E796225FFDD100A7836C /* PhotosTabViewController.swift in Sources */,
+				FC04B6392261D5E70006BF63 /* NoResultsView.swift in Sources */,
 				FC79E787225F09C400A7836C /* ProductDetailViewController.swift in Sources */,
 				FC1698FA225AA5FC00EF4921 /* MainNavigationController.swift in Sources */,
 				FC79E785225E6DFB00A7836C /* Product.swift in Sources */,
@@ -340,7 +353,6 @@
 				FC169900225ABB7300EF4921 /* FormViewController.swift in Sources */,
 				FC04B6332261338C0006BF63 /* SimilarItem.swift in Sources */,
 				FC16990A225C634C00EF4921 /* SearchResultsViewController.swift in Sources */,
-				FC79E790225F575C00A7836C /* ProductDetailsViewModel.swift in Sources */,
 				FC79E792225FC38C00A7836C /* NameValueListCell.swift in Sources */,
 				FC1698ED225A011C00EF4921 /* productsearch.xcdatamodeld in Sources */,
 				FC79E789225F39BC00A7836C /* ProductInfoViewController.swift in Sources */,

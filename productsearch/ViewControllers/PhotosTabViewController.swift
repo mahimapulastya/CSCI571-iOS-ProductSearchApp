@@ -11,7 +11,7 @@ import SwiftyJSON
 import Alamofire
 import SwiftSpinner
 
-class PhotosTabViewController: UIViewController {
+class PhotosTabViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet var scrollView: UIScrollView!
     
@@ -41,22 +41,23 @@ class PhotosTabViewController: UIViewController {
             }
     }
     
-    var yIndex = CGFloat(30)
-    
+    var frame = CGRect(x:0, y:0, width:0, height:0)
     private func setupGoogleImages() {
         if let images = self.images {
-            for img in images {
-                let imageView = UIImageView()
-                imageView.image = img
-                imageView.frame.size.width = 340
-                imageView.frame.size.height = 300
-                imageView.frame.origin.x = 0
-                imageView.frame.origin.y = yIndex
-
+            for i in 0..<images.count {
+                frame.origin.y = (self.scrollView.frame.size.height/1.5 * CGFloat(i))
+                frame.size = CGSize(width: self.scrollView.frame.width, height: (self.scrollView.frame.size.height/1.5))
+                let imageView = UIImageView(frame: frame)
+                imageView.image = images[i]
                 self.scrollView.addSubview(imageView)
-                yIndex += 400
             }
         }
+        
+        if let images = self.images {
+            self.scrollView.contentSize = CGSize(width: self.scrollView.frame.size.width, height: (self.scrollView.frame.size.height/1.5 * CGFloat(images.count)))
+            self.scrollView.delegate = self
+        }
+    
     }
     
 

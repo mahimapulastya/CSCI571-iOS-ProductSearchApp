@@ -21,3 +21,7 @@ public enum SegueIdentifier: String {
     case SearchResultsViewControllerControllerShow = "SearchResultsViewControllerControllerShow"
     case ProductDetailsViewControllerShow = "ProductDetailsViewControllerShow"
 }
+
+public enum NibIdentifiers: String {
+    case noResultsView = "NoResultsView"
+}

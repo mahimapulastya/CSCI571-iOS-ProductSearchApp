@@ -7,78 +7,145 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import SwiftSpinner
 
 class ShippingTabTableViewController: UITableViewController {
 
+    var product: Product?
+    var sections = ["Seller", "Shipping Info", "Return Policy"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.separatorColor = UIColor.clear
+        product = (self.tabBarController as! ProductDetailViewController).product
+        SwiftSpinner.show("Fetching Shipping Data...")
+        
+        if let itemId = product?.itemId {
+            fetchDetails(itemID: itemId) { res in
+                if let storeName = res["Item"]["Storefront"]["StoreName"].string {
+                    if let storeURL = res["Item"]["Storefront"]["StoreURL"].string {
+                        let linkAttributes = [
+                            NSAttributedString.Key.link: URL(string: storeURL)!,
+                            NSAttributedString.Key.foregroundColor: UIColor.blue
+                            ] as [NSAttributedString.Key : Any]
+                        
+                        let attributedString = NSMutableAttributedString(string: storeName)
+                        
+                        // Set the 'click here' substring to be the link
+                        attributedString.setAttributes(linkAttributes, range: NSMakeRange(0, attributedString.length))
+                        
+//                        self.textView.attributedText = attributedString
+                    }
+                
+                }
+            
+                
+                if let feedbackScore = res["Item"]["Seller"]["FeedbackScore"].string {
+                    
+                }
+                
+                if let feedbackpercent = res["Item"]["Seller"]["PositiveFeedbackPercent"].string {
+                    
+                }
+                
+                if let feedbackRatingStar = res["Item"]["Seller"]["FeedbackRatingStar"].string {
+                    
+                }
+                
+                if let currprice = res["Item"]["CurrentPrice"]["Value"].string {
+                    
+                }
+                
+                if let globalShipping = res["Item"]["GlobalShipping"].string {
+                    
+                }
+                
+                if let handlingTime = res["Item"]["HandlingTime"].string {
+                    
+                }
+                
+                if let returnsAccepted = res["Item"]["ReturnPolicy"]["ReturnsAccepted"].string {
+                    
+                }
+                
+                
+                if let refund = res["Item"]["ReturnPolicy"]["Refund"].string {
+                    
+                }
+                
+                if let returnsWithin = res["Item"]["ReturnPolicy"]["ReturnsWithin"].string {
+                    
+                }
+                
+                if let shippingCostPaidBy = res["Item"]["ReturnPolicy"]["ShippingCostPaidBy"].string {
+                    
+                }
+                
+                SwiftSpinner.hide()
+            }
+        }
     }
+    
 
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return sections.count
     }
-
-    /*
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView(frame: CGRect(x:0, y: view.frame.size.height, width: view.frame.size.width, height: 150))
+        let separator = UIView(frame: CGRect(x:15, y: header.frame.size.height - 15, width: header.frame.size.width, height: 1))
+        separator.backgroundColor = UIColor.lightGray
+        let label = UILabel()
+        label.text = sections[section]
+//        header.addSubview(separator)
+        header.addSubview(label)
+        return header
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "shippingCell", for: indexPath)
+        let name = sections[indexPath.row]
+//        cell.textLabel?.text = "\(name) Section: \(indexPath.section) Row: \(indexPath.row)"
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    
+    //======================
+    
+    func fetchDetails(itemID: String, completion: @escaping (JSON) -> Void) {
+        
+        let parameters: Parameters = ["itemID": itemID]
+        
+        Alamofire.request("http://localhost:8080/itemDetails", method: .get, parameters: parameters).responseData { (response) -> Void in
+            guard response.result.isSuccess,
+                let value = response.result.value  else {
+                    let serviceError = UIAlertView(title: "Details service Error!", message: "Failed to fetch Item Details",
+                                                   delegate: self, cancelButtonTitle: "Ok")
+                    SwiftSpinner.hide()
+                    serviceError.show()
+                    return
+            }
+            
+            let swiftyJsonVar = JSON(value)
+            
+            guard swiftyJsonVar["Ack"] == "Success"  else {
+                let noResults = UIAlertView(title: "No Details!", message: "Failed to fetch item details",
+                                            delegate: self, cancelButtonTitle: "Ok")
+                SwiftSpinner.hide()
+                noResults.show()
+                return
+            }
+            
+            completion(swiftyJsonVar)
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    //==========================
 
 }

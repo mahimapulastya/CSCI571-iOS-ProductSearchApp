@@ -11,6 +11,11 @@ import UIKit
 import SwiftSpinner
 import Alamofire
 import SwiftyJSON
+import EasyToast
+
+protocol SearchResultCellDelegate {
+    func showString(str: String)
+}
 
 class SearchResultsViewController: UITableViewController {
     var keyword: String = ""
@@ -31,12 +36,7 @@ class SearchResultsViewController: UITableViewController {
                         priceString = "$\(price)"
                     }
                     let title = productDict["title"][0].string
-                    let url = URL(string: productDict["galleryURL"][0].string ?? "")
-                    let data = try? Data(contentsOf: url!)
-                    var image: UIImage?
-                    if let imageData = data {
-                        image = UIImage(data: imageData)
-                    }
+                    let image = productDict["galleryURL"][0].string ?? ""
                     
                     var shippingValue: String?
                     if let costValue = productDict["shippingInfo"][0]["shippingServiceCost"][0]["__value__"].string {
@@ -58,12 +58,11 @@ class SearchResultsViewController: UITableViewController {
                             condition = "NA"
                         }
                     }
-                    
                     let itemId = productDict["itemId"][0].string!
                     let seller = productDict["sellerInfo"][0]["sellerUserName"][0].string
                     let itemURL = productDict["viewItemURL"][0].string!
                     
-                    let product = Product(itemId: itemId, image: image ?? UIImage(named: "trojan")!, title: title ?? "", price: priceString ?? "", shipping: shippingValue ?? "N/A", zipcode: zipcode ?? "", condition: condition ?? "", seller: seller ?? "", viewItemURL: itemURL )
+                    let product = Product(itemId: itemId, image: image, title: title ?? "", price: priceString ?? "", shipping: shippingValue ?? "N/A", zipcode: zipcode ?? "", condition: condition ?? "", seller: seller ?? "", viewItemURL: itemURL)
 
                     self.products.append(product)
                 }
@@ -117,6 +116,7 @@ class SearchResultsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchresultcell", for: indexPath) as! SearchResultCell
         let product = self.products[indexPath.row]
+        cell.delegate = self
         cell.setupproductview(product: product)
         return cell
     }
@@ -134,3 +134,10 @@ class SearchResultsViewController: UITableViewController {
         }
     }
 }
+
+extension SearchResultsViewController: SearchResultCellDelegate {
+    func showString(str: String) {
+        self.view.showToast(str , position: .bottom , popTime: 2.0 , dismissOnTap: false)
+    }
+}
+
