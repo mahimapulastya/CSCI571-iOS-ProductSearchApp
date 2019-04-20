@@ -58,8 +58,6 @@ class FormViewController: UIViewController {
         // zipcode validation
         return isValid
     }
-
-
 }
 
 extension FormViewController: UIPickerViewDataSource, UIPickerViewDelegate {

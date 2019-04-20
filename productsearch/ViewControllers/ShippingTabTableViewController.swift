@@ -11,13 +11,30 @@ import Alamofire
 import SwiftyJSON
 import SwiftSpinner
 
+class KeyValue {
+    var key : String
+    var value: NSAttributedString
+    
+    init(key: String, value: NSAttributedString) {
+        self.key = key
+        self.value = value
+    }
+}
+
 class ShippingTabTableViewController: UITableViewController {
 
     var product: Product?
-    var sections = ["Seller", "Shipping Info", "Return Policy"]
+    var sections: [String] = []
+    var sectionImages: [UIImage]? = []
+    
+    var sellerKeyValue: [KeyValue] = []
+    var shippingKeyValue: [KeyValue] = []
+    var returnPolicyKeyValue: [KeyValue] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorColor = UIColor.clear
+        tableView.alwaysBounceVertical = false
         product = (self.tabBarController as! ProductDetailViewController).product
         SwiftSpinner.show("Fetching Shipping Data...")
         
@@ -25,64 +42,84 @@ class ShippingTabTableViewController: UITableViewController {
             fetchDetails(itemID: itemId) { res in
                 if let storeName = res["Item"]["Storefront"]["StoreName"].string {
                     if let storeURL = res["Item"]["Storefront"]["StoreURL"].string {
-                        let linkAttributes = [
-                            NSAttributedString.Key.link: URL(string: storeURL)!,
-                            NSAttributedString.Key.foregroundColor: UIColor.blue
-                            ] as [NSAttributedString.Key : Any]
+                        let attributedString = NSAttributedString(string: storeName)
                         
-                        let attributedString = NSMutableAttributedString(string: storeName)
+                        let linkedText = NSMutableAttributedString(attributedString: attributedString)
+                        let hyperlinked = linkedText.setAsLink(textToFind: storeName, linkURL: storeURL)
                         
-                        // Set the 'click here' substring to be the link
-                        attributedString.setAttributes(linkAttributes, range: NSMakeRange(0, attributedString.length))
-                        
-//                        self.textView.attributedText = attributedString
+                        if hyperlinked {
+                            self.sellerKeyValue.append(KeyValue(key: "Store Name", value: NSAttributedString(attributedString: linkedText)))
+                        }
                     }
-                
                 }
             
                 
-                if let feedbackScore = res["Item"]["Seller"]["FeedbackScore"].string {
-                    
+                if let feedbackScore = res["Item"]["Seller"]["FeedbackScore"].number {
+                    self.sellerKeyValue.append(KeyValue(key: "Feedback Score", value: NSAttributedString(string: "\(feedbackScore)")))
                 }
                 
-                if let feedbackpercent = res["Item"]["Seller"]["PositiveFeedbackPercent"].string {
-                    
+                if let feedbackpercent = res["Item"]["Seller"]["PositiveFeedbackPercent"].rawString() {
+                    self.sellerKeyValue.append(KeyValue(key: "Popularity", value: NSAttributedString(string: feedbackpercent)))
                 }
                 
                 if let feedbackRatingStar = res["Item"]["Seller"]["FeedbackRatingStar"].string {
-                    
+                    if feedbackRatingStar != "None" {
+                       self.sellerKeyValue.append(KeyValue(key: "Feedback Star", value: NSAttributedString(string: feedbackRatingStar)))
+                    }
                 }
                 
-                if let currprice = res["Item"]["CurrentPrice"]["Value"].string {
-                    
+                if var currprice = res["Item"]["CurrentPrice"]["Value"].rawString() {
+                    if currprice == "0.0" {
+                        currprice = "FREE"
+                    } else {
+                        currprice = "$\(currprice)"
+                    }
+                    self.shippingKeyValue.append(KeyValue(key: "Shipping Cost", value: NSAttributedString(string: currprice)))
                 }
                 
-                if let globalShipping = res["Item"]["GlobalShipping"].string {
+                if let globalShipping = res["Item"]["GlobalShipping"].bool {
                     
+                    self.shippingKeyValue.append(KeyValue(key: "Global Shipping", value: NSAttributedString(string: globalShipping == true ? "Yes" : "No")))
                 }
                 
-                if let handlingTime = res["Item"]["HandlingTime"].string {
-                    
+                if let handlingTime = res["Item"]["HandlingTime"].rawString() {
+                    self.shippingKeyValue.append(KeyValue(key: "Handling Time", value: NSAttributedString(string: res["Item"]["HandlingTime"].number!.intValue <= 1 ? "\(handlingTime) Day": "\(handlingTime) Days")))
                 }
                 
                 if let returnsAccepted = res["Item"]["ReturnPolicy"]["ReturnsAccepted"].string {
-                    
+                    self.returnPolicyKeyValue.append(KeyValue(key: "Policy", value: NSAttributedString(string: returnsAccepted)))
                 }
                 
                 
                 if let refund = res["Item"]["ReturnPolicy"]["Refund"].string {
-                    
+                     self.returnPolicyKeyValue.append(KeyValue(key: "Refund Mode", value: NSAttributedString(string: refund)))
                 }
                 
                 if let returnsWithin = res["Item"]["ReturnPolicy"]["ReturnsWithin"].string {
-                    
+                    self.returnPolicyKeyValue.append(KeyValue(key: "Return Within", value: NSAttributedString(string: returnsWithin)))
                 }
                 
                 if let shippingCostPaidBy = res["Item"]["ReturnPolicy"]["ShippingCostPaidBy"].string {
-                    
+                    self.returnPolicyKeyValue.append(KeyValue(key: "Shipping Cost Paid By", value: NSAttributedString(string: shippingCostPaidBy)))
+                }
+                
+                if self.sellerKeyValue.count > 0 {
+                    self.sections.append("Seller")
+                    self.sectionImages?.append(UIImage(named: "Seller")!)
+                }
+
+                if self.sellerKeyValue.count > 0 {
+                    self.sections.append("Shipping Info")
+                    self.sectionImages?.append(UIImage(named: "Shipping Info")!)
+                }
+
+                if self.sellerKeyValue.count > 0 {
+                    self.sections.append("Return Policy")
+                    self.sectionImages?.append(UIImage(named: "Return Policy")!)
                 }
                 
                 SwiftSpinner.hide()
+                self.tableView.reloadData()
             }
         }
     }
@@ -94,24 +131,47 @@ class ShippingTabTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections.count
+        if self.sections[section] == "Seller" {
+            return sellerKeyValue.count
+        }
+        if self.sections[section] == "Shipping Info" {
+            return shippingKeyValue.count
+        }
+        
+        if self.sections[section] == "Return Policy" {
+            return returnPolicyKeyValue.count
+        }
+        
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView(frame: CGRect(x:0, y: view.frame.size.height, width: view.frame.size.width, height: 150))
-        let separator = UIView(frame: CGRect(x:15, y: header.frame.size.height - 15, width: header.frame.size.width, height: 1))
-        separator.backgroundColor = UIColor.lightGray
-        let label = UILabel()
-        label.text = sections[section]
-//        header.addSubview(separator)
-        header.addSubview(label)
+        let header = tableView.dequeueReusableCell(withIdentifier: NibIdentifiers.shippingSectionHeaderView.rawValue) as? ShippingSectionHeaderView
+        header?.setTitle(title: sections[section], image: sectionImages?[section])
         return header
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(70)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "shippingCell", for: indexPath)
-        let name = sections[indexPath.row]
-//        cell.textLabel?.text = "\(name) Section: \(indexPath.section) Row: \(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "shippingCell", for: indexPath) as! ShippingCellView
+        cell.selectionStyle = .none
+        if self.sections[indexPath.section] == "Seller" {
+            let nv = self.sellerKeyValue[indexPath.row]
+            cell.setUpNameValue(name: nv.key, value: nv.value)
+        }
+        
+        else if self.sections[indexPath.section] == "Shipping Info" {
+            let nv = self.shippingKeyValue[indexPath.row]
+            cell.setUpNameValue(name: nv.key, value: nv.value)
+        }
+        
+        else if self.sections[indexPath.section] == "Return Policy" {
+            let nv = self.returnPolicyKeyValue[indexPath.row]
+            cell.setUpNameValue(name: nv.key, value: nv.value)
+        }
         return cell
     }
     
@@ -148,4 +208,18 @@ class ShippingTabTableViewController: UITableViewController {
     
     //==========================
 
+}
+
+extension NSMutableAttributedString {
+    public func setAsLink(textToFind:String, linkURL:String) -> Bool {
+        
+        let foundRange = self.mutableString.range(of: textToFind)
+        if foundRange.location != NSNotFound {
+            
+            self.addAttribute(.link, value: linkURL, range: foundRange)
+            
+            return true
+        }
+        return false
+    }
 }

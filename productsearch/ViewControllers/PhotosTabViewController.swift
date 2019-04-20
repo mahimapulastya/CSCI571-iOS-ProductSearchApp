@@ -32,7 +32,9 @@ class PhotosTabViewController: UIViewController, UIScrollViewDelegate {
                         if let imageData = data {
                             image = UIImage(data: imageData)
                         }
-                        self.images?.append(image ?? UIImage(named: "trojan")!)
+                        if let image = image {
+                            self.images?.append(image)
+                        }
                     }
                     }
                 self.setupGoogleImages()

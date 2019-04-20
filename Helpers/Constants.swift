@@ -24,4 +24,5 @@ public enum SegueIdentifier: String {
 
 public enum NibIdentifiers: String {
     case noResultsView = "NoResultsView"
+    case shippingSectionHeaderView = "ShippingSectionHeaderView"
 }

@@ -43,7 +43,6 @@ class ViewController: UIViewController {
     
     func displayCurrentTab(_ tabIndex: Int){
         if let vc = viewControllerForSelectedSegmentIndex(tabIndex) {
-            
             self.addChild(vc)
             vc.didMove(toParent: self)
             

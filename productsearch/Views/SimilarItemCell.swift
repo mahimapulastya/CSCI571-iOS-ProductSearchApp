@@ -30,10 +30,29 @@ class SimilarItemCell: UICollectionViewCell {
         
         self.backgroundColor = UIColor(red: 240, green: 240 , blue: 240, alpha: 1.0)
         self.layer.cornerRadius = 10.0
-        self.gridImageView.image = item.image
-        self.titleLabel.text = item.title
-        self.shippingPriceLabel.text = item.shippingPrice
-        self.daysLeftLabel.text = item.daysLeft
-        self.priceLabel.text = item.price
+        if let image = item.image {
+            self.gridImageView.image = image
+        }
+        
+        if let title = item.title {
+            self.titleLabel.text = title
+        }
+        
+        if let price = item.price {
+            self.priceLabel.text = "$\(price)"
+        }
+        
+        if let daysLeft = item.daysLeft {
+            if (daysLeft == "0" || daysLeft == "1") {
+                self.daysLeftLabel.text = "\(daysLeft) Day Left"
+            } else  {
+                self.daysLeftLabel.text = "\(daysLeft) Days Left"
+            }
+        }
+        
+        if let shippingPrice = item.shippingPrice {
+            self.shippingPriceLabel.text = "$\(shippingPrice)"
+        }
+        
     }
 }

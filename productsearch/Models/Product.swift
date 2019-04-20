@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class Product {
+class Product: NSObject {
     var itemId: String
-    var productImage: UIImage
+    var productImage: String
     var productTitle: String
     var productPrice: String
     var shipping: String
@@ -20,7 +20,7 @@ class Product {
     var seller: String
     var viewItemURL: String
     
-    init(itemId: String, image: UIImage, title: String, price: String, shipping: String, zipcode: String, condition: String, seller: String, viewItemURL: String) {
+    init(itemId: String, image: String, title: String, price: String, shipping: String, zipcode: String, condition: String, seller: String, viewItemURL: String) {
         self.itemId = itemId
         self.productImage = image
         self.productTitle = title

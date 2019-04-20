@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-productsearch/Pods-productsearch-frameworks.sh
+${BUILT_PRODUCTS_DIR}/EasyToast/EasyToast.framework
 ${BUILT_PRODUCTS_DIR}/McPicker/McPicker.framework
 ${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
