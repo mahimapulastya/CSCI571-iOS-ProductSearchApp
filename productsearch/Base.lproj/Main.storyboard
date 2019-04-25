@@ -357,8 +357,13 @@
                         <outlet property="customLocationSwitch" destination="bk1-Bd-4j8" id="TZb-3M-Lbd"/>
                         <outlet property="customZipCodesView" destination="X9A-Sp-XOf" id="rYa-Up-F2A"/>
                         <outlet property="distanceTextField" destination="WJq-nn-ca5" id="FJk-Ji-g8j"/>
+                        <outlet property="freeShippingButton" destination="765-ko-tVT" id="PLy-zN-09Z"/>
                         <outlet property="keywordTextField" destination="f6v-jh-mwk" id="OQf-g4-CMI"/>
+                        <outlet property="localPickupButton" destination="6OG-Jd-mKT" id="vuI-XM-Oer"/>
+                        <outlet property="newButton" destination="GZn-Jm-N3Y" id="6NO-tj-AcI"/>
                         <outlet property="searchButton" destination="Pvl-yg-2RQ" id="w70-8p-4vj"/>
+                        <outlet property="unspecifiedButton" destination="ZWM-E0-BlA" id="DbK-hw-M7P"/>
+                        <outlet property="usedButton" destination="TYc-vx-BhN" id="e9K-ib-rnb"/>
                         <outlet property="zipcodeTextField" destination="Rd8-rP-l7g" id="y2T-gP-zjW"/>
                         <segue destination="ehL-51-bVN" kind="show" identifier="SearchResultsViewControllerControllerShow" id="kqt-Mw-qi9"/>
                     </connections>

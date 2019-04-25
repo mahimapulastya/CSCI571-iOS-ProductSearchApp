@@ -118,7 +118,7 @@ class ProductInfoViewController: UIViewController, UITableViewDataSource {
         
         let parameters: Parameters = ["itemID": itemID]
         
-        Alamofire.request("http://localhost:8080/itemDetails", method: .get, parameters: parameters).responseData { (response) -> Void in
+        Alamofire.request("https://hw8-backend.appspot.com/itemDetails", method: .get, parameters: parameters).responseData { (response) -> Void in
             guard response.result.isSuccess,
                 let value = response.result.value  else {
                     let serviceError = UIAlertView(title: "Details service Error!", message: "Failed to fetch Item Details",

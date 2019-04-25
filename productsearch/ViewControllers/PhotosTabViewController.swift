@@ -69,7 +69,7 @@ class PhotosTabViewController: UIViewController, UIScrollViewDelegate {
         
         let parameters: Parameters = ["productTitle": productTitle]
         
-        Alamofire.request("http://localhost:8080/googlePhotos", method: .get, parameters: parameters).responseData { (response) -> Void in
+        Alamofire.request("https://hw8-backend.appspot.com/googlePhotos", method: .get, parameters: parameters).responseData { (response) -> Void in
             guard response.result.isSuccess,
                 let value = response.result.value  else {
                     let serviceError = UIAlertView(title: "Google Image service Error!", message: "Failed to fetch the images",

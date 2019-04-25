@@ -38,6 +38,7 @@
 		FC79E796225FFDD100A7836C /* PhotosTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E795225FFDD100A7836C /* PhotosTabViewController.swift */; };
 		FC79E798225FFE1B00A7836C /* SimilarItemsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E797225FFE1B00A7836C /* SimilarItemsTabViewController.swift */; };
 		FC79E79A2260A4B900A7836C /* SimilarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79E7992260A4B900A7836C /* SimilarItemCell.swift */; };
+		FCA6C6D62271937E0094CCAB /* SearchFormParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA6C6D52271937E0094CCAB /* SearchFormParams.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,6 +90,7 @@
 		FC79E795225FFDD100A7836C /* PhotosTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTabViewController.swift; sourceTree = "<group>"; };
 		FC79E797225FFE1B00A7836C /* SimilarItemsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarItemsTabViewController.swift; sourceTree = "<group>"; };
 		FC79E7992260A4B900A7836C /* SimilarItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarItemCell.swift; sourceTree = "<group>"; };
+		FCA6C6D52271937E0094CCAB /* SearchFormParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFormParams.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 			children = (
 				FC79E784225E6DFB00A7836C /* Product.swift */,
 				FC04B6322261338C0006BF63 /* SimilarItem.swift */,
+				FCA6C6D52271937E0094CCAB /* SearchFormParams.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				FC1698E5225A011C00EF4921 /* AppDelegate.swift in Sources */,
 				FC04B63F226A5C4D0006BF63 /* ShippingCellView.swift in Sources */,
 				FC79E796225FFDD100A7836C /* PhotosTabViewController.swift in Sources */,
+				FCA6C6D62271937E0094CCAB /* SearchFormParams.swift in Sources */,
 				FC04B6392261D5E70006BF63 /* NoResultsView.swift in Sources */,
 				FC79E787225F09C400A7836C /* ProductDetailViewController.swift in Sources */,
 				FC1698FA225AA5FC00EF4921 /* MainNavigationController.swift in Sources */,

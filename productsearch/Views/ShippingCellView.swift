@@ -22,9 +22,9 @@ class ShippingCellView: UITableViewCell {
     
     func setUpNameValue(name: String, value: NSAttributedString) {
         
-        valueLabel.isUserInteractionEnabled = true
         if name == "Store Name" {
-            let tapgesture = UITapGestureRecognizer(target: self, action: #selector(onClick))
+            let tapgesture = UITapGestureRecognizer(target: self, action: #selector(self.onClick(sender:)))
+            valueLabel.isUserInteractionEnabled = true
             tapgesture.numberOfTapsRequired = 1
             valueLabel.addGestureRecognizer(tapgesture)
         }
@@ -87,11 +87,7 @@ class ShippingCellView: UITableViewCell {
         }
     }
     
-    @objc func onClick () -> Bool {
-        print("something")
-//        UIApplication.shared.open(URL(string: valueString!.value(forKey: NSAttributedString.Key.link.rawValue) as! String)!, options: [:])
-        return false
+    @objc func onClick (sender: UILabel) {
+//        UIApplication.shared.open(URL(string: ), options: [:])
     }
-    
-    
 }

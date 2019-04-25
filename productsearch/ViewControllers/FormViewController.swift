@@ -26,8 +26,20 @@ class FormViewController: UIViewController {
     @IBOutlet weak var zipcodeTextField: UITextField!
     @IBOutlet weak var customZipCodesView: UITableView!
     @IBOutlet weak var clearButton: UIButton!
+    
+    
+    @IBOutlet weak var newButton: CheckBoxButton!
+    @IBOutlet weak var usedButton: CheckBoxButton!
+    @IBOutlet weak var unspecifiedButton: CheckBoxButton!
+    
+    
+    @IBOutlet weak var localPickupButton: CheckBoxButton!
+    @IBOutlet weak var freeShippingButton: CheckBoxButton!
+    
+    var selectedCategory: String = ""
     private let categoryPicker = CategoryPickerView()
     let categoryList = ["All", "Art" , "Baby" , "Books", "Clothing, Shoes & Accessories", "Computer/Tablets & Networking", "Health & Beauty", "Music", "Video Games & Console"]
+    let categoryCode = ["", "550", "2984", "267", "11450", "58058", "26395", "11233", "1249" ]
     
     @IBOutlet weak var searchButton: UIButton!
     var zipCodes: [String] = []
@@ -93,7 +105,7 @@ class FormViewController: UIViewController {
         
         let parameters: Parameters = ["code": code]
         
-        Alamofire.request("http://localhost:8080/geoname", method: .get, parameters: parameters).responseData { (response) -> Void in
+        Alamofire.request("https://hw8-backend.appspot.com/geoname", method: .get, parameters: parameters).responseData { (response) -> Void in
             guard response.result.isSuccess,
                 let value = response.result.value  else {
                     return
@@ -153,7 +165,7 @@ class FormViewController: UIViewController {
     
     @IBAction func performSearch(_ sender: UIButton) {
         if(isValidForm()) {
-            self.keywordText = keywordTextField.text!
+            self.keywordText = keywordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             performSegue(withIdentifier: SegueIdentifier.SearchResultsViewControllerControllerShow.rawValue, sender: self)
             }
     }
@@ -164,19 +176,16 @@ class FormViewController: UIViewController {
             let vc = segue.destination as? SearchResultsViewController
            
             if self.customLocationSwitch.isOn {
-                vc?.keyword = self.keywordText
-                vc?.postalCode = self.zipcodeTextField.text
+                vc?.searchFormParams = SearchFormParams(keyword: self.keywordText, postalCode: self.zipcodeTextField.text, categoryId: self.selectedCategory, distance: (((self.distanceTextField.text?.isEmpty)!) ? 10 : Int(self.distanceTextField.text!)), newC: newButton.isSelected(), usedC: usedButton.isSelected(), unspec: unspecifiedButton.isSelected(), localpickup: localPickupButton.isSelected(), freeshipping: freeShippingButton.isSelected())
             } else {
-                vc?.keyword = self.keywordText
-                vc?.postalCode = self.currLocZip
+                vc?.searchFormParams = SearchFormParams(keyword: self.keywordText, postalCode: self.currLocZip, categoryId: self.selectedCategory, distance: (((self.distanceTextField.text?.isEmpty)!) ? 10 : Int(self.distanceTextField.text!)), newC: newButton.isSelected(), usedC: usedButton.isSelected(), unspec: unspecifiedButton.isSelected(), localpickup: localPickupButton.isSelected(), freeshipping: freeShippingButton.isSelected())
             }
         }
     }
-    
 
     func isValidForm() -> Bool {
         var isValid: Bool = true
-        if keywordTextField.text!.isEmpty {
+        if keywordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             isValid = false
             self.view.makeToast("Keyword is mandatory")
         }
@@ -194,6 +203,14 @@ class FormViewController: UIViewController {
         self.categoryTextField.text = ""
         self.distanceTextField.text = ""
         self.zipcodeTextField.text = ""
+        self.selectedCategory = ""
+        
+        self.newButton.isChecked = false
+        self.usedButton.isChecked = false
+        self.unspecifiedButton.isChecked = false
+        self.localPickupButton.isChecked = false
+        self.freeShippingButton.isChecked = false
+        
         self.customLocationSwitch.isOn = false
         self.customLocationStackView.isHidden = true
         self.zipcodeTextField.isHidden = true
@@ -216,6 +233,7 @@ extension FormViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.categoryTextField.text = self.categoryList[row]
+        self.selectedCategory = self.categoryCode[row]
     }
 }
 

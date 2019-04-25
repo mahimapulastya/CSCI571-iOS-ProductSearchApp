@@ -44,6 +44,7 @@ class SimilarItemsTabViewController: UIViewController, UICollectionViewDelegate,
         gridView.delegate = self
         gridView.dataSource = self
         productItemId = (self.tabBarController as! ProductDetailViewController).product?.itemId
+        sortOrderSegment.isUserInteractionEnabled = false
         SwiftSpinner.show("Fetching Similar Items")
         if let itemId = productItemId {
             self.fetchSimilarItems(itemID: itemId) { res in
@@ -96,7 +97,7 @@ class SimilarItemsTabViewController: UIViewController, UICollectionViewDelegate,
         
         let parameters: Parameters = ["itemID": itemID]
         
-        Alamofire.request("http://localhost:8080/similarItems", method: .get, parameters: parameters).responseData { (response) -> Void in
+        Alamofire.request("https://hw8-backend.appspot.com/similarItems", method: .get, parameters: parameters).responseData { (response) -> Void in
             guard response.result.isSuccess,
                 let value = response.result.value  else {
                     SwiftSpinner.hide()
@@ -186,9 +187,11 @@ class SimilarItemsTabViewController: UIViewController, UICollectionViewDelegate,
         switch(sortType) {
         case 0:
             sortOrderSegment.selectedSegmentIndex = 0
+            sortOrderSegment.isUserInteractionEnabled = false
             resumeOrder()
             
         case 1:
+            sortOrderSegment.isUserInteractionEnabled = true
             if (sortOrder == 0) {
                 similarItems.sort { $0.title! < $1.title! }
             } else {
@@ -196,6 +199,7 @@ class SimilarItemsTabViewController: UIViewController, UICollectionViewDelegate,
             }
 
         case 2:
+            sortOrderSegment.isUserInteractionEnabled = true
             if (sortOrder == 0) {
                 similarItems.sort { Double($0.price!)! < Double($1.price!)! }
             } else {
@@ -203,6 +207,7 @@ class SimilarItemsTabViewController: UIViewController, UICollectionViewDelegate,
             }
 
         case 3:
+            sortOrderSegment.isUserInteractionEnabled = true
             if (sortOrder == 0) {
                 similarItems.sort { Double($0.daysLeft!)! < Double($1.daysLeft!)! }
             } else {
@@ -210,6 +215,7 @@ class SimilarItemsTabViewController: UIViewController, UICollectionViewDelegate,
             }
 
         case 4:
+            sortOrderSegment.isUserInteractionEnabled = true
             if (sortOrder == 0) {
                 similarItems.sort { Double($0.shippingPrice!)! < Double($1.shippingPrice!)!}
             } else {
@@ -218,6 +224,7 @@ class SimilarItemsTabViewController: UIViewController, UICollectionViewDelegate,
 
         default:
             sortOrderSegment.selectedSegmentIndex = 0
+            sortOrderSegment.isUserInteractionEnabled = false
             resumeOrder()
         }
 

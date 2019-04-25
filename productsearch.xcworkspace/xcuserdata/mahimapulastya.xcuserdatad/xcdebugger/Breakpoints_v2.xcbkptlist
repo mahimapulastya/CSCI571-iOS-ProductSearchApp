@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "productsearch/ViewControllers/FormViewController.swift"
-            timestampString = "577868374.503278"
+            filePath = "productsearch/Views/ShippingCellView.swift"
+            timestampString = "577883470.893955"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "onClick(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

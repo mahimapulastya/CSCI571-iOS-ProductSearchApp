@@ -17,10 +17,8 @@ protocol SearchResultCellDelegate {
     func showString(str: String)
 }
 
-
 class SearchResultsViewController: UITableViewController {
-    var keyword: String = ""
-    var postalCode: String?
+    var searchFormParams: SearchFormParams?
     var products: [Product] = []
     var pro: Product?
     
@@ -29,8 +27,8 @@ class SearchResultsViewController: UITableViewController {
         navigationItem.title = "Search Results"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         SwiftSpinner.show("Searching...")
-        if let postalCode = postalCode {
-        performSearch(keyword: keyword, code: postalCode) { swiftyJsonVar in
+        if let params = self.searchFormParams {
+            performSearch(searchParams: params) { swiftyJsonVar in
             
             if let productArray = swiftyJsonVar["findItemsAdvancedResponse"][0]["searchResult"][0]["item"].array {
                 for productDict in productArray {
@@ -78,11 +76,39 @@ class SearchResultsViewController: UITableViewController {
     
     //======================
     
-    func performSearch(keyword: String, code: String, completion: @escaping (JSON) -> Void) {
+    func performSearch(searchParams: SearchFormParams,completion: @escaping (JSON) -> Void) {
         
-        let parameters: Parameters = ["keyword": keyword, "postalCode":  code]
+        var parameters: Parameters = ["keyword": searchParams.keyword!, "postalCode":  searchParams.postalCode!]
         
-        Alamofire.request("http://localhost:8080/searchItem", method: .get, parameters: parameters).responseData { (response) -> Void in
+        if let categoryID = searchParams.categoryId {
+            parameters["category"] = categoryID
+        }
+        
+        if let distance = searchParams.distance {
+            parameters["distance"] = distance
+        }
+        
+        if let newC = searchParams.newC {
+            parameters["new"] = String(newC)
+        }
+        
+        if let usedC = searchParams.usedC {
+            parameters["used"] = String(usedC)
+        }
+        
+        if let unspecC = searchParams.unspec {
+            parameters["unspecified"] = String(unspecC)
+        }
+        
+        if let localpickup = searchParams.localpickup {
+            parameters["localpickup"] = String(localpickup)
+        }
+        
+        if let freeshipping = searchParams.freeshipping {
+            parameters["freeshipping"] = String(freeshipping)
+        }
+        
+        Alamofire.request("https://hw8-backend.appspot.com/searchItem", method: .get, parameters: parameters).responseData { (response) -> Void in
             guard response.result.isSuccess,
                 let value = response.result.value  else {
                     let serviceError = UIAlertView(title: "Search service Error!", message: "Failed to fetch search results",
