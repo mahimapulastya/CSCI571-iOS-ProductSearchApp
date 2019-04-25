@@ -252,18 +252,45 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25b-46-ydD">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IUu-iQ-kpb">
                                         <rect key="frame" x="0.0" y="361.66666666666669" width="393" height="31"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbQ-7S-Kc6">
-                                                <rect key="frame" x="0.0" y="0.0" width="344" height="31"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25b-46-ydD">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbQ-7S-Kc6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="344" height="31"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bk1-Bd-4j8">
+                                                        <rect key="frame" x="344" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="locationSwitchValueChange:" destination="q22-Iu-T4r" eventType="valueChanged" id="jED-UL-0pw"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iEe-LO-02k">
+                                        <rect key="frame" x="0.0" y="400.66666666666669" width="393" height="0.0"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rd8-rP-l7g">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="0.0"/>
                                                 <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bk1-Bd-4j8">
-                                                <rect key="frame" x="344" y="0.0" width="51" height="31"/>
-                                            </switch>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X9A-Sp-XOf">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="393" id="46r-yY-93B"/>
+                                                    <constraint firstAttribute="height" constant="120" id="nYv-pR-zrd"/>
+                                                </constraints>
+                                            </tableView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="zTR-IH-hZd" userLabel="Button Stack View">
@@ -278,6 +305,11 @@
                                                 <state key="normal" title="SEARCH">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="performSearch:" destination="q22-Iu-T4r" eventType="touchUpInside" id="opS-RN-Afr"/>
                                                 </connections>
@@ -291,13 +323,22 @@
                                                 <state key="normal" title="CLEAR">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="clearForm:" destination="q22-Iu-T4r" eventType="touchUpInside" id="eDI-qF-emC"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="zTR-IH-hZd" firstAttribute="top" secondItem="25b-46-ydD" secondAttribute="bottom" constant="30" id="Zaf-Q5-WIY" userLabel="Button Stack View.top = Form Stack View.bottom + 40"/>
-                                    <constraint firstAttribute="width" constant="393" id="Zop-8l-wox"/>
+                                    <constraint firstAttribute="width" constant="393" id="Zop-8l-wox" userLabel="width = 200"/>
+                                    <constraint firstItem="zTR-IH-hZd" firstAttribute="leading" secondItem="Jdg-OS-Os6" secondAttribute="leading" constant="50" id="jQu-Aj-KdG"/>
+                                    <constraint firstItem="zTR-IH-hZd" firstAttribute="trailing" secondItem="Jdg-OS-Os6" secondAttribute="trailing" constant="50" id="pm5-tC-EWw"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="Jdg-OS-Os6"/>
                             </stackView>
@@ -309,9 +350,16 @@
                         <viewLayoutGuide key="safeArea" id="0rt-7f-Gdn"/>
                     </view>
                     <connections>
+                        <outlet property="buttonStackView" destination="zTR-IH-hZd" id="A0b-Pg-HaG"/>
                         <outlet property="categoryTextField" destination="F4P-4Q-rAB" id="9uf-jX-Xgq"/>
+                        <outlet property="clearButton" destination="5Hl-t9-j1I" id="hk0-rb-Adg"/>
+                        <outlet property="customLocationStackView" destination="iEe-LO-02k" id="Eo5-E7-aIx"/>
+                        <outlet property="customLocationSwitch" destination="bk1-Bd-4j8" id="TZb-3M-Lbd"/>
+                        <outlet property="customZipCodesView" destination="X9A-Sp-XOf" id="rYa-Up-F2A"/>
+                        <outlet property="distanceTextField" destination="WJq-nn-ca5" id="FJk-Ji-g8j"/>
                         <outlet property="keywordTextField" destination="f6v-jh-mwk" id="OQf-g4-CMI"/>
                         <outlet property="searchButton" destination="Pvl-yg-2RQ" id="w70-8p-4vj"/>
+                        <outlet property="zipcodeTextField" destination="Rd8-rP-l7g" id="y2T-gP-zjW"/>
                         <segue destination="ehL-51-bVN" kind="show" identifier="SearchResultsViewControllerControllerShow" id="kqt-Mw-qi9"/>
                     </connections>
                 </viewController>

@@ -17,8 +17,10 @@ protocol SearchResultCellDelegate {
     func showString(str: String)
 }
 
+
 class SearchResultsViewController: UITableViewController {
     var keyword: String = ""
+    var postalCode: String?
     var products: [Product] = []
     var pro: Product?
     
@@ -27,7 +29,8 @@ class SearchResultsViewController: UITableViewController {
         navigationItem.title = "Search Results"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         SwiftSpinner.show("Searching...")
-        performSearch(keyword: keyword) { swiftyJsonVar in
+        if let postalCode = postalCode {
+        performSearch(keyword: keyword, code: postalCode) { swiftyJsonVar in
             
             if let productArray = swiftyJsonVar["findItemsAdvancedResponse"][0]["searchResult"][0]["item"].array {
                 for productDict in productArray {
@@ -70,13 +73,14 @@ class SearchResultsViewController: UITableViewController {
             SwiftSpinner.hide()
             self.tableView.reloadData()
         }
+        }
     }
     
     //======================
     
-    func performSearch(keyword: String, completion: @escaping (JSON) -> Void) {
+    func performSearch(keyword: String, code: String, completion: @escaping (JSON) -> Void) {
         
-        let parameters: Parameters = ["keyword": keyword, "postalCode":  "90007"]
+        let parameters: Parameters = ["keyword": keyword, "postalCode":  code]
         
         Alamofire.request("http://localhost:8080/searchItem", method: .get, parameters: parameters).responseData { (response) -> Void in
             guard response.result.isSuccess,
