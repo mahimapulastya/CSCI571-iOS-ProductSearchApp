@@ -42,13 +42,10 @@ class ShippingTabTableViewController: UITableViewController {
             fetchDetails(itemID: itemId) { res in
                 if let storeName = res["Item"]["Storefront"]["StoreName"].string {
                     if let storeURL = res["Item"]["Storefront"]["StoreURL"].string {
-                        let attributedString = NSAttributedString(string: storeName)
+                        let attributedString = NSAttributedString(string: "\(storeName)&%$##\(storeURL)")
                         let linkedText = NSMutableAttributedString(attributedString: attributedString)
-                        let hyperlinked = linkedText.setAsLink(textToFind: storeName, linkURL: storeURL)
+                        self.sellerKeyValue.append(KeyValue(key: "Store Name", value: NSAttributedString(attributedString: linkedText)))
                         
-                        if hyperlinked {
-                            self.sellerKeyValue.append(KeyValue(key: "Store Name", value: NSAttributedString(attributedString: linkedText)))
-                        }
                     }
                 }
             
@@ -209,16 +206,3 @@ class ShippingTabTableViewController: UITableViewController {
 
 }
 
-extension NSMutableAttributedString {
-    public func setAsLink(textToFind:String, linkURL:String) -> Bool {
-        
-        let foundRange = self.mutableString.range(of: textToFind)
-        if foundRange.location != NSNotFound {
-            
-            self.addAttribute(.link, value: linkURL, range: foundRange)
-            
-            return true
-        }
-        return false
-    }
-}

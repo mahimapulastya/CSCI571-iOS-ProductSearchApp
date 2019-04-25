@@ -67,7 +67,6 @@ class WishListViewController: UIViewController {
             self.resultsView.isHidden = false
             setupTableView()
         }
-
     }
 
     func setupNoResultsView() {

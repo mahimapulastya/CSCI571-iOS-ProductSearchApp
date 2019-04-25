@@ -20,24 +20,36 @@ class ShippingCellView: UITableViewCell {
     
     @IBOutlet weak var feedbackStarImage: UIImageView!
     
+    var storeURL : String?
+    
     func setUpNameValue(name: String, value: NSAttributedString) {
         
         if name == "Store Name" {
             let tapgesture = UITapGestureRecognizer(target: self, action: #selector(self.onClick(sender:)))
             valueLabel.isUserInteractionEnabled = true
             tapgesture.numberOfTapsRequired = 1
+            let test = value.string.components(separatedBy: "&%$##")
             valueLabel.addGestureRecognizer(tapgesture)
+            valueLabel.attributedText = NSAttributedString(string: test[0], attributes:
+                [.underlineStyle: NSUnderlineStyle.single.rawValue])
+            valueLabel.textColor = UIColor.blue
+            valueLabel.textAlignment = .center
+            valueLabel.font =  UIFont.systemFont(ofSize: 15.0)
+            nameLabel.text = name
+            storeURL = test[1]
         }
         
-        if name == "Feedback Star" {
+        else if name == "Feedback Star" {
             valueLabel.isHidden = true
             feedbackStarImage.isHidden = false
             setFeedbackImage(value: value.string)
+            nameLabel.text = name
+            valueLabel.attributedText = value
             
+        } else {
+            nameLabel.text = name
+            valueLabel.attributedText = value
         }
-        nameLabel.text = name
-        valueLabel.attributedText = value
-    
     }
     
     
@@ -88,6 +100,8 @@ class ShippingCellView: UITableViewCell {
     }
     
     @objc func onClick (sender: UILabel) {
-//        UIApplication.shared.open(URL(string: ), options: [:])
+        if let storeURL = storeURL {
+            UIApplication.shared.open(URL(string: storeURL)!, options: [:])
+        }
     }
 }
